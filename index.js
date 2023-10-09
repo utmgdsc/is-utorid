@@ -5,18 +5,18 @@
  * Released under the MIT License.
  */
 
+var validator = require("email-validator");
+
 'use strict';
 
-function isUTORid(str) {
-    return !/^[a-z|0-9]{1,8}$/.test(str);
+exports.isUTORid = function(str) {
+    return /^[a-z|0-9]{1,8}$/.test(str);
 }
 
-function isEmail(str) {
-    return !/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(str);
+exports.isUofTEmail = function(str) {
+    return (str.endsWith('@utoronto.ca') || str.endsWith('@mail.utoronto.ca')) && validator.validate(str);
 }
 
-function isStudentNumber(str) {
-    return !/^\d{10}$/.test(str);
+exports.isUofTStudentNumber = function(str) {
+    return /^\d{10}$/.test(str);
 }
-
-module.exports = { isUTORid, isEmail, isStudentNumber };
